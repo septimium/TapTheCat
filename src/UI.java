@@ -39,6 +39,7 @@ public class UI {
 
         //Frame initialization
         JFrame ui = new JFrame();
+        ui.setTitle("TapTheCat");
         ui.setLayout(new BorderLayout());
         ui.setSize(w, h);
         ui.getContentPane().setBackground(Color.black);
@@ -64,9 +65,10 @@ public class UI {
         ui.add(score, BorderLayout.NORTH);
         ui.add(multiplier, BorderLayout.NORTH);
 
-        ImageIcon kittenimage = new ImageIcon(getClass().getClassLoader().getResource("kitten2.png"));
+        ImageIcon kittenimage = new ImageIcon(getClass().getClassLoader().getResource("kitten1.png"));
         JButton kitten = new JButton();
-        kitten.setBounds(0, 200, 550, 500);
+        kitten.setSize(kittenimage.getIconWidth(), kittenimage.getIconHeight());
+        kitten.setBounds(0, 200, 400, 300);
         kitten.addActionListener(e -> {
             setKibbles(getKibbles() + (1 * getMultiplier()));
             setMultiplier(getMultiplier() * 2);
@@ -75,14 +77,12 @@ public class UI {
             System.out.println(getMultiplier());
             System.out.println(getKibbles());
         });
-        kitten.setBorder(null);
+        kitten.setBorder(BorderFactory.createLineBorder(Color.white));
         kitten.setIcon(kittenimage);
         kitten.setFocusPainted(false);
         kitten.setBorderPainted(false);
-        kitten.setBorder(null);
         kitten.setContentAreaFilled(false);
         kitten.setBackground(Color.BLACK);
-        kitten.setSize(550, 500);
         ui.add(kitten);
 
         //More Frame settings
@@ -94,6 +94,7 @@ public class UI {
         //
 
     }
+
     public double getKibbles() {
         return kibbles;
     }
