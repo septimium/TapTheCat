@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,12 +9,12 @@ import java.text.*;
 
 public class Game {
     double kibbles;
-    double multiplier;
+    double zoomies;
     double feeder;
 
     public Game(int w, int h){
         this.kibbles = 0;
-        this.multiplier = 1;
+        this.zoomies = 1;
         this.feeder = 1;
 
         //Custom Font
@@ -55,11 +54,11 @@ public class Game {
         //
 
         //Multiplier and Feeder Label
-        JLabel multiplier = new JLabel("Multiplier: " + "x" + fmt.format(getMultiplier()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+        JLabel multiplier = new JLabel("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
         multiplier.setHorizontalAlignment(SwingConstants.CENTER);
         multiplier.setBackground(Color.black);
         multiplier.setForeground(Color.white);
-        multiplier.setFont(font.deriveFont(Font.PLAIN, 30));
+        multiplier.setFont(font.deriveFont(Font.PLAIN, 42));
         multiplier.setBorder(new EmptyBorder(10,0,5,0));
         ui.add(multiplier, BorderLayout.SOUTH);
         //
@@ -79,6 +78,7 @@ public class Game {
         p.setOpaque(false);
         ImageIcon kittenimage = level1.getKitten();
         JButton kitten = new JButton();
+        kitten.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         kitten.setBounds(15,100, 410, 300);
         kitten.setIcon(kittenimage);
         kitten.setFocusPainted(false);
@@ -90,15 +90,39 @@ public class Game {
         ui.add(p, BorderLayout.WEST);
         //
 
+        //Shops buttons
         JPanel shops = new JPanel();
-        shops.setLayout(new BoxLayout());
+        shops.setLayout(new GridLayout(5,1, 0, 0));
         shops.setPreferredSize(new Dimension(450,300));
         shops.setOpaque(false);
-        JButton multipliers = new JButton();
-        JButton feeders = new JButton();
+        JButton multipliers = new JButton("Get Zoomies");
+        multipliers.setFont(font.deriveFont(Font.PLAIN, 40));
+        multipliers.setFocusPainted(false);
+        JButton feeders = new JButton("Get Feeders");
+        feeders.setFocusPainted(false);
+        feeders.setFont(font.deriveFont(Font.PLAIN, 40));
+        JButton empty1 = new JButton();
+        JButton empty2 = new JButton();
+        JButton empty3 = new JButton();
+        empty1.setBackground(Color.black);
+        empty1.setBorderPainted(false);
+        empty1.setFocusPainted(false);
+        empty1.setContentAreaFilled(false);
+        empty2.setBorderPainted(false);
+        empty2.setFocusPainted(false);
+        empty2.setContentAreaFilled(false);
+        empty3.setBorderPainted(false);
+        empty3.setFocusPainted(false);
+        empty3.setContentAreaFilled(false);
+        empty2.setBackground(Color.black);
+        empty3.setBackground(Color.black);
+        shops.add(empty1);
         shops.add(multipliers);
+        shops.add(empty2);
         shops.add(feeders);
+        shops.add(empty3);
         ui.add(shops, BorderLayout.CENTER);
+        //
 
         //Display the cat
         JPanel p2 = new JPanel();
@@ -118,9 +142,9 @@ public class Game {
         ui.add(p2, BorderLayout.EAST);
 
         kitten.addActionListener(e -> {
-            setKibbles(getKibbles() + (1 * getMultiplier()));
+            setKibbles(getKibbles() + (1 * getZoomies()));
             setFeeder(15);
-            multiplier.setText("Multiplier: " + "x" + fmt.format(getMultiplier()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+            multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
             score.setText("Kibbles: " + fmt.format(getKibbles()));
         });
 
@@ -129,7 +153,7 @@ public class Game {
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 setKibbles(getKibbles() + getFeeder());
-                multiplier.setText("Multiplier: " + "x" + fmt.format(getMultiplier()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+                multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
                 score.setText("Kibbles: " + fmt.format(getKibbles()));
             }
         };
@@ -154,12 +178,12 @@ public class Game {
         this.kibbles = kibbles;
     }
 
-    public double getMultiplier() {
-        return multiplier;
+    public double getZoomies() {
+        return zoomies;
     }
 
-    public void setMultiplier(double multiplier) {
-        this.multiplier = multiplier;
+    public void setZoomies(double zoomies) {
+        this.zoomies = zoomies;
     }
 
     public double getFeeder() {

@@ -17,7 +17,7 @@ public class Menu {
 
         //Content
         JFrame res = new JFrame();
-        res.setTitle("TapTheCat: Main Menu");
+        res.setTitle("TapTheCat | Main Menu");
         res.setSize(400, 600);
         res.setLayout(new GridLayout(4,1));
         JLabel text = new JLabel("<HTML><CENTER>Choose resolution:</CENTER><HTML>");
