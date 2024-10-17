@@ -30,8 +30,8 @@ public class Resolution {
         b1.setFocusPainted(false);
         b1.setSize(200,50);
         b1.addActionListener(e -> {
-            res.dispose();
-            UI u = new UI(1.5,1280,720);
+//            res.dispose();
+            Game u = new Game(1.5,1280,720);
         });
         res.add(b1);
 
@@ -41,8 +41,8 @@ public class Resolution {
         b2.setFocusPainted(false);
         b2.setSize(200,50);
         b2.addActionListener(e -> {
-            res.dispose();
-            UI u = new UI(2,1920,1080);
+//            res.dispose();
+            Game u = new Game(2,1920,1080);
         });
         res.add(b2);
 

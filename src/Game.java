@@ -1,16 +1,17 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.*;
 
-public class UI {
+public class Game {
     double kibbles;
     double multiplier;
     double feeder;
 
-    public UI(double r, int w, int h){
+    public Game(double r, int w, int h){
         this.kibbles = 0;
         this.multiplier = 1;
         this.feeder = 0.0;
@@ -36,20 +37,26 @@ public class UI {
         fmt.setMinimumFractionDigits(1);
         //
 
+        //Layout initialization
+        BorderLayout l = new BorderLayout();
+        //
+
         //Frame initialization
         JFrame ui = new JFrame();
         ui.setTitle("TapTheCat");
-        ui.setLayout(new BorderLayout());
+        ui.setLayout(l);
         ui.setSize(w, h);
         ui.getContentPane().setBackground(Color.black);
         //
 
+
         //Score Label
         JLabel score = new JLabel("Kibbles: " + fmt.format(getKibbles()), SwingConstants.CENTER);
-        score.setBounds(0, 20, w, (int)(r*65));
+        score.setBorder(new EmptyBorder(20,0,0,0));
         score.setBackground(Color.black);
         score.setForeground(Color.white);
         score.setFont(font.deriveFont(Font.PLAIN, (int)(r*45)));
+        ui.add(score, BorderLayout.NORTH);
         //
 
         //Multiplier and Feeder Label
@@ -59,15 +66,18 @@ public class UI {
         multiplier.setBackground(Color.black);
         multiplier.setForeground(Color.white);
         multiplier.setFont(font.deriveFont(Font.PLAIN, (int)(r*20)));
-        ui.add(score, BorderLayout.NORTH);
-        ui.add(multiplier, BorderLayout.NORTH);
+        multiplier.setBorder(new EmptyBorder((int)(r*6),0,(int)(r*4),0));
+        ui.add(multiplier, BorderLayout.SOUTH);
         //
 
-        L1_Tuxedo level1 = new L1_Tuxedo();
-        ImageIcon kittenimage = level1.getKittenl();
+        JPanel p = new JPanel();
+        p.setLayout(null);
+        p.setPreferredSize(new Dimension(450,300));
+        p.setOpaque(false);
+        L1_Tuxedo level1 = new L1_Tuxedo(r);
+        ImageIcon kittenimage = level1.getKitten();
         JButton kitten = new JButton();
-        kitten.setSize(kittenimage.getIconWidth(), kittenimage.getIconHeight());
-        kitten.setBounds(0, 300, 400, 300);
+        kitten.setBounds((int)(r*10),(int)(r*65), 410, 300);
         kitten.addActionListener(e -> {
             setKibbles(getKibbles() + (1 * getMultiplier()));
             multiplier.setText("Multiplier: " + "x" + fmt.format(getMultiplier()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
@@ -75,16 +85,16 @@ public class UI {
             System.out.println(getMultiplier());
             System.out.println(getKibbles());
         });
-        kitten.setBorder(BorderFactory.createLineBorder(Color.white));
         kitten.setIcon(kittenimage);
         kitten.setFocusPainted(false);
         kitten.setBorderPainted(false);
         kitten.setContentAreaFilled(false);
         kitten.setBackground(Color.BLACK);
-        ui.add(kitten);
+        p.add(kitten, BorderLayout.CENTER);
+        p.setVisible(true);
+        ui.add(p, BorderLayout.WEST);
 
         //More Frame settings
-        ui.setLayout(null);
         ui.setResizable(false);
         ui.setVisible(true);
         ui.setLocationRelativeTo(null);
