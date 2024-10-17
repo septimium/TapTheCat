@@ -15,6 +15,7 @@ public class Resolution {
         } catch (IOException | FontFormatException e) {
         }
 
+        //Content
         JFrame res = new JFrame();
         res.setTitle("TapTheCat: Choose Resolution");
         res.setSize(400, 600);
@@ -23,6 +24,7 @@ public class Resolution {
         text.setFont(font.deriveFont(Font.PLAIN, 40));
         res.add(text);
 
+        //First Button
         JButton b1 = new JButton("1280x720 | HD");
         b1.setFont(font.deriveFont(Font.PLAIN, 18));
         b1.setFocusPainted(false);
@@ -33,7 +35,7 @@ public class Resolution {
         });
         res.add(b1);
 
-
+        //Second Button
         JButton b2 = new JButton("1920x1080 | FULL HD");
         b2.setFont(font.deriveFont(Font.PLAIN, 18));
         b2.setFocusPainted(false);
@@ -44,7 +46,7 @@ public class Resolution {
         });
         res.add(b2);
 
-
+        //Also content
         res.setResizable(false);
         res.setLocationRelativeTo(null);
         res.setVisible(true);

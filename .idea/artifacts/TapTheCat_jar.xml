@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="TapTheCat:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/TapTheCat_jar</output-path>
-    <root id="archive" name="TapTheCat.jar">
-      <element id="module-output" name="TapTheCat" />
-    </root>
-  </artifact>
-</component>

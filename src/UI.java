@@ -25,7 +25,6 @@ public class UI {
         } catch (IOException | FontFormatException e) {
         }
 
-
         //Number formatting for better visuals
         String[] compactPatterns
                 = {"", "", "", "0K", "00K", "000K", "0M", "00M", "000M",
@@ -60,18 +59,17 @@ public class UI {
         multiplier.setBackground(Color.black);
         multiplier.setForeground(Color.white);
         multiplier.setFont(font.deriveFont(Font.PLAIN, (int)(r*20)));
-        //
-
         ui.add(score, BorderLayout.NORTH);
         ui.add(multiplier, BorderLayout.NORTH);
+        //
 
-        ImageIcon kittenimage = new ImageIcon(getClass().getClassLoader().getResource("kitten1.png"));
+        L1_Tuxedo level1 = new L1_Tuxedo();
+        ImageIcon kittenimage = level1.getKittenl();
         JButton kitten = new JButton();
         kitten.setSize(kittenimage.getIconWidth(), kittenimage.getIconHeight());
-        kitten.setBounds(0, 200, 400, 300);
+        kitten.setBounds(0, 300, 400, 300);
         kitten.addActionListener(e -> {
             setKibbles(getKibbles() + (1 * getMultiplier()));
-            setMultiplier(getMultiplier() * 2);
             multiplier.setText("Multiplier: " + "x" + fmt.format(getMultiplier()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
             score.setText("Kibbles: " + fmt.format(getKibbles()));
             System.out.println(getMultiplier());
