@@ -57,7 +57,6 @@ public class Game {
         //Multiplier and Feeder Label
         JLabel multiplier = new JLabel("Multiplier: " + "x" + fmt.format(getMultiplier()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
         multiplier.setHorizontalAlignment(SwingConstants.CENTER);
-        multiplier.setBounds(0, 113, w, 45);
         multiplier.setBackground(Color.black);
         multiplier.setForeground(Color.white);
         multiplier.setFont(font.deriveFont(Font.PLAIN, 30));
@@ -78,7 +77,6 @@ public class Game {
         p.setLayout(null);
         p.setPreferredSize(new Dimension(450,300));
         p.setOpaque(false);
-
         ImageIcon kittenimage = level1.getKitten();
         JButton kitten = new JButton();
         kitten.setBounds(15,100, 410, 300);
@@ -87,10 +85,37 @@ public class Game {
         kitten.setBorderPainted(false);
         kitten.setContentAreaFilled(false);
         kitten.setBackground(Color.BLACK);
-        p.add(kitten, BorderLayout.CENTER);
+        p.add(kitten);
         p.setVisible(true);
         ui.add(p, BorderLayout.WEST);
         //
+
+        JPanel shops = new JPanel();
+        shops.setLayout(new BoxLayout());
+        shops.setPreferredSize(new Dimension(450,300));
+        shops.setOpaque(false);
+        JButton multipliers = new JButton();
+        JButton feeders = new JButton();
+        shops.add(multipliers);
+        shops.add(feeders);
+        ui.add(shops, BorderLayout.CENTER);
+
+        //Display the cat
+        JPanel p2 = new JPanel();
+        p2.setLayout(null);
+        p2.setPreferredSize(new Dimension(450,300));
+        p2.setOpaque(false);
+        ImageIcon kittenimagelocked = level1.getKitten();
+        JButton kittenL = new JButton();
+        kittenL.setBounds(15,100, 410, 300);
+        kittenL.setIcon(kittenimage);
+        kittenL.setFocusPainted(false);
+        kittenL.setBorderPainted(false);
+        kittenL.setContentAreaFilled(false);
+        kittenL.setBackground(Color.BLACK);
+        p2.add(kittenL);
+        p2.setVisible(true);
+        ui.add(p2, BorderLayout.EAST);
 
         kitten.addActionListener(e -> {
             setKibbles(getKibbles() + (1 * getMultiplier()));
