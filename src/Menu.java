@@ -3,8 +3,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class Resolution {
-    public Resolution() {
+public class Menu {
+    public Menu() {
         //Custom Font
         Font font = null;
         try {
@@ -17,34 +17,45 @@ public class Resolution {
 
         //Content
         JFrame res = new JFrame();
-        res.setTitle("TapTheCat: Choose Resolution");
+        res.setTitle("TapTheCat: Main Menu");
         res.setSize(400, 600);
-        res.setLayout(new GridLayout(3,1));
+        res.setLayout(new GridLayout(4,1));
         JLabel text = new JLabel("<HTML><CENTER>Choose resolution:</CENTER><HTML>");
         text.setFont(font.deriveFont(Font.PLAIN, 40));
         res.add(text);
+        //
 
         //First Button
-        JButton b1 = new JButton("1280x720 | HD");
+        JButton b1 = new JButton("PLAY");
         b1.setFont(font.deriveFont(Font.PLAIN, 18));
         b1.setFocusPainted(false);
         b1.setSize(200,50);
         b1.addActionListener(e -> {
-//            res.dispose();
-            Game u = new Game(1.5,1280,720);
+            res.dispose();
+            Game g = new Game(1280,720);
         });
         res.add(b1);
 
         //Second Button
-        JButton b2 = new JButton("1920x1080 | FULL HD");
+        JButton b2 = new JButton("HOW TO PLAY");
         b2.setFont(font.deriveFont(Font.PLAIN, 18));
         b2.setFocusPainted(false);
         b2.setSize(200,50);
         b2.addActionListener(e -> {
-//            res.dispose();
-            Game u = new Game(2,1920,1080);
+//            TO DO
         });
         res.add(b2);
+
+        //Third Button
+        JButton b3 = new JButton("EXIT");
+        b3.setFont(font.deriveFont(Font.PLAIN, 18));
+        b3.setFocusPainted(false);
+        b3.setSize(200,50);
+        b3.addActionListener(e -> {
+            res.dispose();
+        });
+        res.add(b3);
+        //
 
         //Also content
         res.setResizable(false);
