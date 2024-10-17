@@ -1,18 +1,11 @@
 import javax.swing.*;
+import java.math.BigInteger;
 
-public class L3_Tortoiseshell {
-    ImageIcon kitten;
-    String levelname;
+public class L3_Tortoiseshell extends Cat{
     L3_Tortoiseshell() {
         this.kitten = new ImageIcon("res/kitten3HD.png");
         this.levelname = "Level 3: Tortoiseshell Cat";
-    }
-
-    public ImageIcon getKitten() {
-        return kitten;
-    }
-
-    public String getLevelName() {
-        return levelname;
+        this.level = 3;
+        this.nextlevel = new BigInteger("50000000000000");
     }
 }

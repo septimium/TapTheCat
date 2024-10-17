@@ -27,6 +27,7 @@ public class Menu {
 
         //First Button
         JButton b1 = new JButton("PLAY");
+        b1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         b1.setFont(font.deriveFont(Font.PLAIN, 18));
         b1.setFocusPainted(false);
         b1.setSize(200,50);
@@ -38,6 +39,7 @@ public class Menu {
 
         //Second Button
         JButton b2 = new JButton("HOW TO PLAY");
+        b2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         b2.setFont(font.deriveFont(Font.PLAIN, 18));
         b2.setFocusPainted(false);
         b2.setSize(200,50);
@@ -48,6 +50,7 @@ public class Menu {
 
         //Third Button
         JButton b3 = new JButton("EXIT");
+        b3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         b3.setFont(font.deriveFont(Font.PLAIN, 18));
         b3.setFocusPainted(false);
         b3.setSize(200,50);
