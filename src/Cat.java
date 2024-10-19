@@ -1,17 +1,17 @@
 import javax.swing.*;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 public class Cat {
     ImageIcon kitten;
     String levelname;
     int level;
-    BigInteger nextlevel;
+    BigDecimal nextlevel;
 
-    public BigInteger getNextlevel() {
+    public BigDecimal getNextlevel() {
         return nextlevel;
     }
 
-    public void setNextlevel(BigInteger nextlevel) {
+    public void setNextlevel(BigDecimal nextlevel) {
         this.nextlevel = nextlevel;
     }
 

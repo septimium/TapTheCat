@@ -1,26 +1,24 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.text.*;
 
 public class Game {
-    BigInteger kibbles;
-    BigInteger zoomies;
-    BigInteger feeder;
+    BigDecimal kibbles;
+    BigDecimal zoomies;
+    BigDecimal feeder;
     int currentlevel;
     Cat currentcat;
     public Game(int w, int h){
-        this.kibbles = BigInteger.valueOf(0);
-        this.zoomies = BigInteger.valueOf(1);
-        this.feeder = BigInteger.valueOf(0);
+        this.kibbles = BigDecimal.valueOf(0);
+        this.zoomies = BigDecimal.valueOf(1);
+        this.feeder = BigDecimal.valueOf(0);
         this.currentlevel = new L1_Tuxedo().getLevel();
         this.currentcat = new L1_Tuxedo();
 
@@ -421,27 +419,27 @@ public class Game {
 
     }
 
-    public BigInteger getKibbles() {
+    public BigDecimal getKibbles() {
         return kibbles;
     }
 
-    public void setKibbles(BigInteger kibbles) {
+    public void setKibbles(BigDecimal kibbles) {
         this.kibbles = kibbles;
     }
 
-    public BigInteger getZoomies() {
+    public BigDecimal getZoomies() {
         return zoomies;
     }
 
-    public void setZoomies(BigInteger zoomies) {
+    public void setZoomies(BigDecimal zoomies) {
         this.zoomies = zoomies;
     }
 
-    public BigInteger getFeeder() {
+    public BigDecimal getFeeder() {
         return feeder;
     }
 
-    public void setFeeder(BigInteger feeder) {
+    public void setFeeder(BigDecimal feeder) {
         this.feeder = feeder;
     }
 
