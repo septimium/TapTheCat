@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.*;
 
 public class Game {
@@ -34,10 +33,12 @@ public class Game {
         //
 
         //Number formatting for better visuals
-        String[] compactPatterns = {"", "", "", "0K", "00K", "000K", "0M", "00M", "000M", "0B", "00B", "000B", "0T", "00T", "000T", "0Q", "00Q", "000Q",};
+        String[] compactPatterns = {"", "", "", "0K", "00K", "000K", "0M", "00M", "000M", "0B", "00B", "000B", "0T", "00T", "000T", "0Q", "00Q", "000Q","0X",};
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getNumberInstance();
         CompactNumberFormat fmt = new CompactNumberFormat(decimalFormat.toPattern(), decimalFormat.getDecimalFormatSymbols(), compactPatterns);
         fmt.setMinimumFractionDigits(1);
+        CompactNumberFormat fmt2 = new CompactNumberFormat(decimalFormat.toPattern(), decimalFormat.getDecimalFormatSymbols(), compactPatterns);
+        fmt2.setMinimumFractionDigits(0);
         //
 
         //Frame initialization
@@ -47,12 +48,7 @@ public class Game {
         ui.setContentPane(new JLabel(background));
         ui.setLayout(new BorderLayout());
         ui.setSize(w, h);
-//        ui.getContentPane().setBackground(Color.black);
         //
-
-        //Background
-        //
-
 
         //Score Label
         JLabel score = new JLabel("Kibbles: " + fmt.format(getKibbles()), SwingConstants.CENTER);
@@ -84,6 +80,18 @@ public class Game {
         int level4 = cat4.getLevel();
         Cat cat5 = new L5_Siamese();
         int level5 = cat5.getLevel();
+        //
+
+        //Initiate the zoomies
+        Zoomies laser = new Zoomies(BigDecimal.valueOf(100),"Pointing Laser", BigDecimal.valueOf(5), BigDecimal.valueOf(0));
+        Zoomies scratcher = new Zoomies(BigDecimal.valueOf(10000),"Scratcher", BigDecimal.valueOf(500), BigDecimal.valueOf(0));
+        Zoomies fishing = new Zoomies(BigDecimal.valueOf(1000000),"Fishing Pole", BigDecimal.valueOf(50000), BigDecimal.valueOf(0));
+        Zoomies crinkle = new Zoomies(BigDecimal.valueOf(100000000),"Crinkle Ball", BigDecimal.valueOf(5000000), BigDecimal.valueOf(0));
+        Zoomies mouse = new Zoomies(new BigDecimal("10000000000"),"Stuffed Mouse", new BigDecimal("500000000"), BigDecimal.valueOf(0));
+        Zoomies catnip = new Zoomies(new BigDecimal("1000000000000"),"Cat Nip", new BigDecimal("50000000000"), BigDecimal.valueOf(0));
+        //
+
+        //Initiate the feeders
         //
 
         //Display the cat
@@ -119,51 +127,96 @@ public class Game {
         multipliers.setContentAreaFilled(false);
         multipliers.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         Font finalFont1 = font;
+        Font finalFont2 = font;
         multipliers.addActionListener(e -> {
             JPanel zoomiesshop = new JPanel();
             zoomiesshop.setLayout(new GridLayout(0,1,0,0));
-            JButton zoomies1 = new JButton("zoomies");
-            zoomies1.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
+            JButton zoomies1 = new JButton(fmt2.format(laser.getPrice())+" - "+laser.getName()+" (x"+fmt2.format(laser.getMultiplier())+") : " +fmt2.format(laser.getAmount()));
+            zoomies1.setFont(finalFont1.deriveFont(Font.PLAIN, 15));
             zoomies1.setFocusPainted(false);
             zoomies1.setBorderPainted(false);
             zoomies1.setBackground(new Color(0,0,0,0));
             zoomies1.setForeground(Color.white);
             zoomies1.setContentAreaFilled(false);
             zoomies1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            JButton zoomies2 = new JButton("zoomies");
-            zoomies2.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
+            zoomies1.addActionListener(e1 -> {
+                if(getKibbles().compareTo(laser.getPrice()) >= 0){
+                    setKibbles(getKibbles().subtract(laser.getPrice()));
+                    laser.setAmount(laser.getAmount().add(BigDecimal.valueOf(1)));
+                    setZoomies(getZoomies().add(laser.getMultiplier()));
+                    multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+                    laser.priceIncrease();
+                    score.setText("Kibbles: " + fmt.format(getKibbles()));
+                    zoomies1.setText(fmt2.format(laser.getPrice())+" - "+laser.getName()+" (x"+fmt2.format(laser.getMultiplier())+") : " +fmt2.format(laser.getAmount()));
+                }
+                else{
+                    JPopupMenu pop = new JPopupMenu();
+                    JLabel l = new JLabel("INSUFFICIENT KIBBLES");
+                    l.setFont(finalFont2.deriveFont(Font.PLAIN, 15));
+                    l.setForeground(Color.white);
+                    pop.setBorderPainted(false);
+                    pop.setBackground(new Color(0,0,0,0));
+                    pop.setOpaque(false);
+                    pop.add(l);
+                    pop.show(zoomiesshop, 70,50);
+                }
+            });
+            JButton zoomies2 = new JButton(fmt2.format(scratcher.getPrice())+" - "+scratcher.getName()+" (x"+fmt2.format(scratcher.getMultiplier())+") : " +fmt2.format(scratcher.getAmount()));
+            zoomies2.setFont(finalFont1.deriveFont(Font.PLAIN, 15));
             zoomies2.setFocusPainted(false);
             zoomies2.setBorderPainted(false);
             zoomies2.setBackground(new Color(0,0,0,0));
             zoomies2.setForeground(Color.white);
             zoomies2.setContentAreaFilled(false);
             zoomies2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            JButton zoomies3 = new JButton("zoomies");
-            zoomies3.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
+            zoomies2.addActionListener(e2 -> {
+                if(getKibbles().compareTo(scratcher.getPrice()) >= 0){
+                    setKibbles(getKibbles().subtract(scratcher.getPrice()));
+                    scratcher.setAmount(scratcher.getAmount().add(BigDecimal.valueOf(1)));
+                    setZoomies(getZoomies().add(scratcher.getMultiplier()));
+                    multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+                    scratcher.priceIncrease();
+                    score.setText("Kibbles: " + fmt.format(getKibbles()));
+                    zoomies2.setText(fmt2.format(scratcher.getPrice())+" - "+scratcher.getName()+" (x"+fmt2.format(scratcher.getMultiplier())+") : " +fmt2.format(scratcher.getAmount()));
+                }
+                else{
+                    JPopupMenu pop = new JPopupMenu();
+                    JLabel l = new JLabel("INSUFFICIENT KIBBLES");
+                    l.setFont(finalFont2.deriveFont(Font.PLAIN, 15));
+                    l.setForeground(Color.white);
+                    pop.setBorderPainted(false);
+                    pop.setBackground(new Color(0,0,0,0));
+                    pop.setOpaque(false);
+                    pop.add(l);
+                    pop.show(zoomiesshop, 70,120);
+                }
+            });
+            JButton zoomies3 = new JButton(fmt2.format(fishing.getPrice())+" - "+fishing.getName()+" (x"+fmt2.format(fishing.getMultiplier())+") : " +fmt2.format(fishing.getAmount()));
+            zoomies3.setFont(finalFont1.deriveFont(Font.PLAIN, 15));
             zoomies3.setFocusPainted(false);
             zoomies3.setBorderPainted(false);
             zoomies3.setBackground(new Color(0,0,0,0));
             zoomies3.setForeground(Color.white);
             zoomies3.setContentAreaFilled(false);
             zoomies3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            JButton zoomies4 = new JButton("zoomies");
-            zoomies4.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
+            JButton zoomies4 = new JButton(fmt2.format(crinkle.getPrice())+" - "+crinkle.getName()+" (x"+fmt2.format(crinkle.getMultiplier())+") : " +fmt2.format(crinkle.getAmount()));
+            zoomies4.setFont(finalFont1.deriveFont(Font.PLAIN, 15));
             zoomies4.setFocusPainted(false);
             zoomies4.setBorderPainted(false);
             zoomies4.setBackground(new Color(0,0,0,0));
             zoomies4.setForeground(Color.white);
             zoomies4.setContentAreaFilled(false);
             zoomies4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            JButton zoomies5 = new JButton("zoomies");
-            zoomies5.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
+            JButton zoomies5 = new JButton(fmt2.format(mouse.getPrice())+" - "+mouse.getName()+" (x"+fmt2.format(mouse.getMultiplier())+") : " +fmt2.format(mouse.getAmount()));
+            zoomies5.setFont(finalFont1.deriveFont(Font.PLAIN, 14));
             zoomies5.setFocusPainted(false);
             zoomies5.setBorderPainted(false);
             zoomies5.setBackground(new Color(0,0,0,0));
             zoomies5.setForeground(Color.white);
             zoomies5.setContentAreaFilled(false);
             zoomies5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            JButton zoomies6 = new JButton("zoomies");
-            zoomies6.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
+            JButton zoomies6 = new JButton(fmt2.format(catnip.getPrice())+" - "+catnip.getName()+" (x"+fmt2.format(catnip.getMultiplier())+") : " +fmt2.format(catnip.getAmount()));
+            zoomies6.setFont(finalFont1.deriveFont(Font.PLAIN, 15));
             zoomies6.setFocusPainted(false);
             zoomies6.setBorderPainted(false);
             zoomies6.setBackground(new Color(0,0,0,0));
@@ -383,7 +436,6 @@ public class Game {
                 pop.setBackground(new Color(0,0,0,0));
                 pop.add(l);
                 pop.show(p2, 85,370);
-
             }
         });
         p2.add(unlock, c);
@@ -393,7 +445,6 @@ public class Game {
         //Zoomies function
         kitten.addActionListener(e -> {
             setKibbles(getKibbles().add(getZoomies()));
-            multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
             score.setText("Kibbles: " + fmt.format(getKibbles()));
         });
         //
@@ -403,7 +454,6 @@ public class Game {
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 setKibbles(getKibbles().add(getFeeder()));
-                multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
                 score.setText("Kibbles: " + fmt.format(getKibbles()));
             }
         };
