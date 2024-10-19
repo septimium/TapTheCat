@@ -15,7 +15,7 @@ public class Game {
     int currentlevel;
     Cat currentcat;
     public Game(int w, int h){
-        this.kibbles = BigDecimal.valueOf(0);
+        this.kibbles = new BigDecimal("10000000000000");
         this.zoomies = BigDecimal.valueOf(1);
         this.feeder = BigDecimal.valueOf(0);
         this.currentlevel = new L1_Tuxedo().getLevel();
@@ -88,7 +88,7 @@ public class Game {
         Zoomies fishing = new Zoomies(BigDecimal.valueOf(1000000),"Fishing Pole", BigDecimal.valueOf(50000), BigDecimal.valueOf(0));
         Zoomies crinkle = new Zoomies(BigDecimal.valueOf(100000000),"Crinkle Ball", BigDecimal.valueOf(5000000), BigDecimal.valueOf(0));
         Zoomies mouse = new Zoomies(new BigDecimal("10000000000"),"Stuffed Mouse", new BigDecimal("500000000"), BigDecimal.valueOf(0));
-        Zoomies catnip = new Zoomies(new BigDecimal("1000000000000"),"Cat Nip", new BigDecimal("50000000000"), BigDecimal.valueOf(0));
+        Zoomies catnip = new Zoomies(new BigDecimal("1000000000000"),"Cat Nip", new BigDecimal("100000000000"), BigDecimal.valueOf(0));
         //
 
         //Initiate the feeders
@@ -199,6 +199,28 @@ public class Game {
             zoomies3.setForeground(Color.white);
             zoomies3.setContentAreaFilled(false);
             zoomies3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            zoomies3.addActionListener(e3 -> {
+                if(getKibbles().compareTo(fishing.getPrice()) >= 0){
+                    setKibbles(getKibbles().subtract(fishing.getPrice()));
+                    fishing.setAmount(fishing.getAmount().add(BigDecimal.valueOf(1)));
+                    setZoomies(getZoomies().add(fishing.getMultiplier()));
+                    multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+                    fishing.priceIncrease();
+                    score.setText("Kibbles: " + fmt.format(getKibbles()));
+                    zoomies3.setText(fmt2.format(fishing.getPrice())+" - "+fishing.getName()+" (x"+fmt2.format(fishing.getMultiplier())+") : " +fmt2.format(fishing.getAmount()));
+                }
+                else{
+                    JPopupMenu pop = new JPopupMenu();
+                    JLabel l = new JLabel("INSUFFICIENT KIBBLES");
+                    l.setFont(finalFont2.deriveFont(Font.PLAIN, 15));
+                    l.setForeground(Color.white);
+                    pop.setBorderPainted(false);
+                    pop.setBackground(new Color(0,0,0,0));
+                    pop.setOpaque(false);
+                    pop.add(l);
+                    pop.show(zoomiesshop, 70,190);
+                }
+            });
             JButton zoomies4 = new JButton(fmt2.format(crinkle.getPrice())+" - "+crinkle.getName()+" (x"+fmt2.format(crinkle.getMultiplier())+") : " +fmt2.format(crinkle.getAmount()));
             zoomies4.setFont(finalFont1.deriveFont(Font.PLAIN, 15));
             zoomies4.setFocusPainted(false);
@@ -207,6 +229,28 @@ public class Game {
             zoomies4.setForeground(Color.white);
             zoomies4.setContentAreaFilled(false);
             zoomies4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            zoomies4.addActionListener(e4 -> {
+                if(getKibbles().compareTo(crinkle.getPrice()) >= 0){
+                    setKibbles(getKibbles().subtract(crinkle.getPrice()));
+                    crinkle.setAmount(crinkle.getAmount().add(BigDecimal.valueOf(1)));
+                    setZoomies(getZoomies().add(crinkle.getMultiplier()));
+                    multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+                    crinkle.priceIncrease();
+                    score.setText("Kibbles: " + fmt.format(getKibbles()));
+                    zoomies4.setText(fmt2.format(crinkle.getPrice())+" - "+crinkle.getName()+" (x"+fmt2.format(crinkle.getMultiplier())+") : " +fmt2.format(crinkle.getAmount()));
+                }
+                else{
+                    JPopupMenu pop = new JPopupMenu();
+                    JLabel l = new JLabel("INSUFFICIENT KIBBLES");
+                    l.setFont(finalFont2.deriveFont(Font.PLAIN, 15));
+                    l.setForeground(Color.white);
+                    pop.setBorderPainted(false);
+                    pop.setBackground(new Color(0,0,0,0));
+                    pop.setOpaque(false);
+                    pop.add(l);
+                    pop.show(zoomiesshop, 70,260);
+                }
+            });
             JButton zoomies5 = new JButton(fmt2.format(mouse.getPrice())+" - "+mouse.getName()+" (x"+fmt2.format(mouse.getMultiplier())+") : " +fmt2.format(mouse.getAmount()));
             zoomies5.setFont(finalFont1.deriveFont(Font.PLAIN, 14));
             zoomies5.setFocusPainted(false);
@@ -215,6 +259,28 @@ public class Game {
             zoomies5.setForeground(Color.white);
             zoomies5.setContentAreaFilled(false);
             zoomies5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            zoomies5.addActionListener(e5 -> {
+                if(getKibbles().compareTo(mouse.getPrice()) >= 0){
+                    setKibbles(getKibbles().subtract(mouse.getPrice()));
+                    mouse.setAmount(mouse.getAmount().add(BigDecimal.valueOf(1)));
+                    setZoomies(getZoomies().add(mouse.getMultiplier()));
+                    multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+                    mouse.priceIncrease();
+                    score.setText("Kibbles: " + fmt.format(getKibbles()));
+                    zoomies5.setText(fmt2.format(mouse.getPrice())+" - "+mouse.getName()+" (x"+fmt2.format(mouse.getMultiplier())+") : " +fmt2.format(mouse.getAmount()));
+                }
+                else{
+                    JPopupMenu pop = new JPopupMenu();
+                    JLabel l = new JLabel("INSUFFICIENT KIBBLES");
+                    l.setFont(finalFont2.deriveFont(Font.PLAIN, 15));
+                    l.setForeground(Color.white);
+                    pop.setBorderPainted(false);
+                    pop.setBackground(new Color(0,0,0,0));
+                    pop.setOpaque(false);
+                    pop.add(l);
+                    pop.show(zoomiesshop, 70,330);
+                }
+            });
             JButton zoomies6 = new JButton(fmt2.format(catnip.getPrice())+" - "+catnip.getName()+" (x"+fmt2.format(catnip.getMultiplier())+") : " +fmt2.format(catnip.getAmount()));
             zoomies6.setFont(finalFont1.deriveFont(Font.PLAIN, 15));
             zoomies6.setFocusPainted(false);
@@ -223,6 +289,28 @@ public class Game {
             zoomies6.setForeground(Color.white);
             zoomies6.setContentAreaFilled(false);
             zoomies6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            zoomies6.addActionListener(e6 -> {
+                if(getKibbles().compareTo(catnip.getPrice()) >= 0){
+                    setKibbles(getKibbles().subtract(catnip.getPrice()));
+                    catnip.setAmount(catnip.getAmount().add(BigDecimal.valueOf(1)));
+                    setZoomies(getZoomies().add(catnip.getMultiplier()));
+                    multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+                    catnip.priceIncrease();
+                    score.setText("Kibbles: " + fmt.format(getKibbles()));
+                    zoomies6.setText(fmt2.format(catnip.getPrice())+" - "+catnip.getName()+" (x"+fmt2.format(catnip.getMultiplier())+") : " +fmt2.format(catnip.getAmount()));
+                }
+                else{
+                    JPopupMenu pop = new JPopupMenu();
+                    JLabel l = new JLabel("INSUFFICIENT KIBBLES");
+                    l.setFont(finalFont2.deriveFont(Font.PLAIN, 15));
+                    l.setForeground(Color.white);
+                    pop.setBorderPainted(false);
+                    pop.setBackground(new Color(0,0,0,0));
+                    pop.setOpaque(false);
+                    pop.add(l);
+                    pop.show(zoomiesshop, 70,400);
+                }
+            });
             JButton zoomies7 = new JButton("<- Go Back");
             zoomies7.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
             zoomies7.setFocusPainted(false);
