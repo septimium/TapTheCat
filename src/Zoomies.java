@@ -29,23 +29,12 @@ public class Zoomies {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public BigDecimal getMultiplier() {
         return multiplier;
     }
 
-    public void setMultiplier(BigDecimal multiplier) {
-        this.multiplier = multiplier;
-    }
 }

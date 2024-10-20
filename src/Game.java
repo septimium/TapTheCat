@@ -71,15 +71,10 @@ public class Game {
 
         //Initialize the levels
         Cat cat1 = new L1_Tuxedo();
-        int level1 = cat1.getLevel();
         Cat cat2 = new L2_White();
-        int level2 = cat2.getLevel();
         Cat cat3 = new L3_Tortoiseshell();
-        int level3 = cat3.getLevel();
         Cat cat4 = new L4_Orange();
-        int level4 = cat4.getLevel();
         Cat cat5 = new L5_Siamese();
-        int level5 = cat5.getLevel();
         //
 
         //Initiate the zoomies

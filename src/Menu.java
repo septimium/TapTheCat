@@ -15,6 +15,7 @@ public class Menu {
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is));
         } catch (IOException | FontFormatException e) {
         }
+        //
 
         //Content
         JFrame res = new JFrame();
@@ -54,7 +55,7 @@ public class Menu {
         b2.setForeground(Color.white);
         b2.setSize(200,50);
         b2.addActionListener(e -> {
-//            TO DO
+            HowToPlay h = new HowToPlay();
         });
         res.add(b2);
 
