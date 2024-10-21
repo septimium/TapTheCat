@@ -645,7 +645,17 @@ public class Game {
                         kitten.setIcon(currentcat.getKitten());
                         break;
                     case 5:
-                        //TODO
+                        setCurrentlevel(6);
+                        kittenL.setIcon(new ImageIcon(""));
+                        clevel.setText("Congratulations! You won!");
+                        unlock.setText("Click here to start a new game!");
+                        ui.setTitle("TapTheCat | Freedom!");
+                        kitten.setIcon(new ImageIcon(""));
+                        unlock.addActionListener(e7 -> {
+                            new Game(1280,720);
+                            ui.dispose();
+                        });
+                        break;
                 }
             }
             else{
