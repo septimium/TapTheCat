@@ -45,7 +45,8 @@ public class Game {
         JFrame ui = new JFrame();
         ui.setTitle("TapTheCat | "+currentcat.getLevelname());
         ImageIcon background = new ImageIcon("res/background.png");
-        ui.setContentPane(new JLabel(background));
+        JLabel bg = new JLabel(background);
+        ui.setContentPane(bg);
         ui.setLayout(new BorderLayout());
         ui.setSize(w, h);
         //
@@ -650,7 +651,8 @@ public class Game {
                         clevel.setText("Congratulations! You won!");
                         unlock.setText("Click here to start a new game!");
                         ui.setTitle("TapTheCat | Freedom!");
-                        kitten.setIcon(new ImageIcon(""));
+                        kitten.setIcon(new ImageIcon("res/kittensfinal.png"));
+                        bg.setIcon(new ImageIcon("res/backgroundempty.png"));
                         unlock.addActionListener(e7 -> {
                             new Game(1280,720);
                             ui.dispose();
