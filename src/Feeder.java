@@ -14,7 +14,7 @@ public class Feeder {
     }
 
     public void priceIncrease() {
-        this.price = this.price.multiply(BigDecimal.valueOf(1.8));
+        this.price = this.price.multiply(BigDecimal.valueOf(1.7));
     }
 
     public BigDecimal getAmount() {
