@@ -15,7 +15,7 @@ public class Game {
     int currentlevel;
     Cat currentcat;
     public Game(int w, int h){
-        this.kibbles = new BigDecimal("0");
+        this.kibbles = new BigDecimal("1000000000000000000");
         this.zoomies = BigDecimal.valueOf(1);
         this.feeder = BigDecimal.valueOf(0);
         this.currentlevel = new L1_Tuxedo().getLevel();
@@ -436,30 +436,96 @@ public class Game {
                     pop.show(feedersshop, 70,190);
                 }
             });
-            JButton feeder4 = new JButton("zoomies");
-            feeder4.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
+            JButton feeder4 = new JButton(fmt2.format(timed.getPrice())+" - "+timed.getName()+" ("+fmt2.format(timed.getMultiplier())+"/s) : " +fmt2.format(timed.getAmount()));
+            feeder4.setFont(finalFont1.deriveFont(Font.PLAIN, 15));
             feeder4.setFocusPainted(false);
             feeder4.setBorderPainted(false);
             feeder4.setBackground(new Color(0,0,0,0));
             feeder4.setForeground(Color.white);
             feeder4.setContentAreaFilled(false);
             feeder4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            JButton feeder5 = new JButton("zoomies");
-            feeder5.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
+            feeder4.addActionListener(e4 -> {
+                if(getKibbles().compareTo(timed.getPrice()) >= 0){
+                    setKibbles(getKibbles().subtract(timed.getPrice()));
+                    timed.setAmount(timed.getAmount().add(BigDecimal.valueOf(1)));
+                    setFeeder(getFeeder().add(timed.getMultiplier()));
+                    multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+                    timed.priceIncrease();
+                    score.setText("Kibbles: " + fmt.format(getKibbles()));
+                    feeder4.setText(fmt2.format(timed.getPrice())+" - "+timed.getName()+" ("+fmt2.format(timed.getMultiplier())+"/s) : " +fmt2.format(timed.getAmount()));
+                }
+                else{
+                    JPopupMenu pop = new JPopupMenu();
+                    JLabel l = new JLabel("INSUFFICIENT KIBBLES");
+                    l.setFont(finalFont2.deriveFont(Font.PLAIN, 15));
+                    l.setForeground(Color.white);
+                    pop.setBorderPainted(false);
+                    pop.setBackground(new Color(0,0,0,0));
+                    pop.setOpaque(false);
+                    pop.add(l);
+                    pop.show(feedersshop, 70,260);
+                }
+            });
+            JButton feeder5 = new JButton(fmt2.format(smart.getPrice())+" - "+smart.getName()+" ("+fmt2.format(smart.getMultiplier())+"/s) : " +fmt2.format(smart.getAmount()));
+            feeder5.setFont(finalFont1.deriveFont(Font.PLAIN, 15));
             feeder5.setFocusPainted(false);
             feeder5.setBorderPainted(false);
             feeder5.setBackground(new Color(0,0,0,0));
             feeder5.setForeground(Color.white);
             feeder5.setContentAreaFilled(false);
             feeder5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            JButton feeder6 = new JButton("zoomies");
-            feeder6.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
+            feeder5.addActionListener(e5 -> {
+                if(getKibbles().compareTo(smart.getPrice()) >= 0){
+                    setKibbles(getKibbles().subtract(smart.getPrice()));
+                    smart.setAmount(smart.getAmount().add(BigDecimal.valueOf(1)));
+                    setFeeder(getFeeder().add(smart.getMultiplier()));
+                    multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+                    smart.priceIncrease();
+                    score.setText("Kibbles: " + fmt.format(getKibbles()));
+                    feeder5.setText(fmt2.format(smart.getPrice())+" - "+smart.getName()+" ("+fmt2.format(smart.getMultiplier())+"/s) : " +fmt2.format(smart.getAmount()));
+                }
+                else{
+                    JPopupMenu pop = new JPopupMenu();
+                    JLabel l = new JLabel("INSUFFICIENT KIBBLES");
+                    l.setFont(finalFont2.deriveFont(Font.PLAIN, 15));
+                    l.setForeground(Color.white);
+                    pop.setBorderPainted(false);
+                    pop.setBackground(new Color(0,0,0,0));
+                    pop.setOpaque(false);
+                    pop.add(l);
+                    pop.show(feedersshop, 70,330);
+                }
+            });
+            JButton feeder6 = new JButton(fmt2.format(free.getPrice())+" - "+free.getName()+" ("+fmt2.format(free.getMultiplier())+"/s) : " +fmt2.format(free.getAmount()));
+            feeder6.setFont(finalFont1.deriveFont(Font.PLAIN, 15));
             feeder6.setFocusPainted(false);
             feeder6.setBorderPainted(false);
             feeder6.setBackground(new Color(0,0,0,0));
             feeder6.setForeground(Color.white);
             feeder6.setContentAreaFilled(false);
             feeder6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            feeder6.addActionListener(e6 -> {
+                if(getKibbles().compareTo(free.getPrice()) >= 0){
+                    setKibbles(getKibbles().subtract(free.getPrice()));
+                    free.setAmount(free.getAmount().add(BigDecimal.valueOf(1)));
+                    setFeeder(getFeeder().add(free.getMultiplier()));
+                    multiplier.setText("Zoomies: " + "x" + fmt.format(getZoomies()) + "    " + "Feeder: " + fmt.format(getFeeder()) + "/s");
+                    free.priceIncrease();
+                    score.setText("Kibbles: " + fmt.format(getKibbles()));
+                    feeder6.setText(fmt2.format(free.getPrice())+" - "+free.getName()+" ("+fmt2.format(free.getMultiplier())+"/s) : " +fmt2.format(free.getAmount()));
+                }
+                else{
+                    JPopupMenu pop = new JPopupMenu();
+                    JLabel l = new JLabel("INSUFFICIENT KIBBLES");
+                    l.setFont(finalFont2.deriveFont(Font.PLAIN, 15));
+                    l.setForeground(Color.white);
+                    pop.setBorderPainted(false);
+                    pop.setBackground(new Color(0,0,0,0));
+                    pop.setOpaque(false);
+                    pop.add(l);
+                    pop.show(feedersshop, 70,400);
+                }
+            });
             JButton feeder7 = new JButton("<- Go Back");
             feeder7.setFont(finalFont1.deriveFont(Font.PLAIN, 20));
             feeder7.setFocusPainted(false);
