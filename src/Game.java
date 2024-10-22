@@ -315,6 +315,7 @@ public class Game {
                     case 5:
                         setCurrentlevel(6);
                         kittenL.setIcon(new ImageIcon(""));
+                        setKibbles(getKibbles().subtract(currentcat.getNextlevel()));
                         clevel.setText("Congratulations! You won!");
                         unlock.setText("Click here to start a new game!");
                         ui.setTitle("TapTheCat | Freedom!");
@@ -363,10 +364,16 @@ public class Game {
     //Unlock mechanism function
     public void unlockConfig(int level, Cat cat, JFrame ui, JLabel clevel, JButton unlock, JButton kitten){
         setCurrentlevel(level);
+        setKibbles(getKibbles().subtract(currentcat.getNextlevel()));
         setCurrentcat(cat);
         ui.setTitle("TapTheCat | "+currentcat.getLevelname());
         clevel.setText(currentcat.getLevelname());
-        unlock.setText("Buy Freedom: "+getFMT().format(currentcat.getNextlevel()));
+        if(level == 5) {
+            unlock.setText("Buy Freedom: " + getFMT().format(currentcat.getNextlevel()));
+        }
+        else{
+            unlock.setText("Unlock next cat: "+getFMT().format(currentcat.getNextlevel()));
+        }
         kitten.setIcon(currentcat.getKitten());
     }
     //
@@ -441,7 +448,7 @@ public class Game {
 
     //Number formatting function
     public CompactNumberFormat getFMT(){
-        String[] compactPatterns = {"", "", "", "0K", "00K", "000K", "0M", "00M", "000M", "0B", "00B", "000B", "0T", "00T", "000T", "0Q", "00Q", "000Q","0X",};
+        String[] compactPatterns = {"", "", "", "0K", "00K", "000K", "0M", "00M", "000M", "0B", "00B", "000B", "0T", "00T", "000T", "0Q", "00Q", "000Q",};
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getNumberInstance();
         CompactNumberFormat fmt = new CompactNumberFormat(decimalFormat.toPattern(), decimalFormat.getDecimalFormatSymbols(), compactPatterns);
         fmt.setMinimumFractionDigits(1);
@@ -451,7 +458,7 @@ public class Game {
 
     //Another number formatting function
     public CompactNumberFormat getFMT2(){
-        String[] compactPatterns = {"", "", "", "0K", "00K", "000K", "0M", "00M", "000M", "0B", "00B", "000B", "0T", "00T", "000T", "0Q", "00Q", "000Q","0X",};
+        String[] compactPatterns = {"", "", "", "0K", "00K", "000K", "0M", "00M", "000M", "0B", "00B", "000B", "0T", "00T", "000T", "0Q", "00Q", "000Q",};
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getNumberInstance();
         CompactNumberFormat fmt2 = new CompactNumberFormat(decimalFormat.toPattern(), decimalFormat.getDecimalFormatSymbols(), compactPatterns);
         fmt2.setMinimumFractionDigits(0);

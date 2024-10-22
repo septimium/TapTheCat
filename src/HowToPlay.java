@@ -40,8 +40,7 @@ public class HowToPlay {
                         "1M = 1000K - one million \n" +
                         "1B = 1000M - one billion \n" +
                         "1T = 1000B - one trillion \n" +
-                        "1Q = 1000T - one quadrillion \n" +
-                        "1X = 1000Q - undefined (endgame)\n\n"+
+                        "1Q = 1000T - one quadrillion \n\n\n" +
                         "github.com/septimium"
                 );
         centerText(text2);
