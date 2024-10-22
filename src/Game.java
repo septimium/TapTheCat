@@ -14,7 +14,7 @@ public class Game {
     int currentlevel;
     Cat currentcat;
     public Game(int w, int h){
-        this.kibbles = new BigDecimal("1000000000000000000");
+        this.kibbles = new BigDecimal("0");
         this.zoomies = BigDecimal.valueOf(1);
         this.feeder = BigDecimal.valueOf(0);
         this.currentlevel = new L1_Tuxedo().getLevel();

@@ -1,5 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +27,31 @@ public class HowToPlay {
         res.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //
 
-        //TO DO
+        //Text
+        JTextPane text2 = new JTextPane();
+        text2.setEditable(false);
+
+        text2.setText(" \n"+
+                        "Click the kitten to obtain Kibbles! (1 click = 1 Kibble) "+
+                        "Use Kibbles to buy click multipliers (ZOOMIES) and clicks-per-second (FEEDERS) which will help you gain Kibbles faster! \n\n"+
+                        "There are 5 unlockable levels including endgame. Every unlockable level requires a number of Kibbles. Unlock all levels to win the game! \n\n"+
+                        "Have fun and enjoy tapping! \n\n"+
+                        "Number formatting: \n" +
+                        "1K = 1000 - one thousand \n" +
+                        "1M = 1000K - one million \n" +
+                        "1B = 1000M - one billion \n" +
+                        "1T = 1000B - one trillion \n" +
+                        "1Q = 1000T - one quadrillion \n" +
+                        "1X = 1000Q - undefined (endgame)\n\n"+
+                        "github.com/septimium"
+                );
+        centerText(text2);
+        text2.setFont(getFont().deriveFont(Font.PLAIN, 15));
+        text2.setForeground(Color.white);
+        text2.setBackground(new Color(0,0,0,0));
+        text2.setOpaque(false);
+        text2.setHighlighter(null);
+        res.add(text2, BorderLayout.CENTER);
         //
 
         //Go Back Button
@@ -54,4 +81,11 @@ public class HowToPlay {
         return font;
     }
     //
+
+    public static void centerText(JTextPane pane) {
+        StyledDocument doc = pane.getStyledDocument();
+        SimpleAttributeSet center = new SimpleAttributeSet();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+    }//
 }
