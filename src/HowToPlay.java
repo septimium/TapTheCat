@@ -13,7 +13,7 @@ public class HowToPlay {
         JFrame res = new JFrame();
         res.setTitle("TapTheCat | How To Play");
         res.setSize(600, 600);
-        ImageIcon background = new ImageIcon("res/htpbackground.png");
+        ImageIcon background = new ImageIcon(getClass().getResource("res/htpbackground.png"));
         res.setContentPane(new JLabel(background));
         res.setResizable(false);
         res.setLocationRelativeTo(null);
@@ -30,7 +30,6 @@ public class HowToPlay {
         //Text
         JTextPane text2 = new JTextPane();
         text2.setEditable(false);
-
         text2.setText(" \n"+
                         "Click the kitten to obtain Kibbles! (1 click = 1 Kibble) "+
                         "Use Kibbles to buy click multipliers (ZOOMIES) and clicks-per-second (FEEDERS) which will help you gain Kibbles faster! \n\n"+
@@ -82,6 +81,7 @@ public class HowToPlay {
     }
     //
 
+    //Center Text Function
     public static void centerText(JTextPane pane) {
         StyledDocument doc = pane.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();

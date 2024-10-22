@@ -9,7 +9,7 @@ public class Menu {
         JFrame res = new JFrame();
         res.setTitle("TapTheCat | Main Menu");
         res.setSize(400, 600);
-        ImageIcon background = new ImageIcon("res/menubackground.png");
+        ImageIcon background = new ImageIcon(getClass().getResource("res/menubackground.png"));
         res.setContentPane(new JLabel(background));
         res.setLayout(new GridLayout(4,1));
         JLabel text = new JLabel("TapTheCat", SwingConstants.CENTER);

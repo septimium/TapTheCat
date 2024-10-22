@@ -23,7 +23,7 @@ public class Game {
         //Frame initialization
         JFrame ui = new JFrame();
         ui.setTitle("TapTheCat | "+currentcat.getLevelname());
-        ImageIcon background = new ImageIcon("res/background.png");
+        ImageIcon background = new ImageIcon(getClass().getResource("res/background.png"));
         JLabel bg = new JLabel(background);
         ui.setContentPane(bg);
         ui.setLayout(new BorderLayout());
@@ -279,7 +279,7 @@ public class Game {
         clevel.setForeground(Color.white);
         clevel.setFont(getFont().deriveFont(Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL; c.gridx = 0; c.gridy = 0; p2.add(clevel, c);
-        ImageIcon kittenimagelocked = new ImageIcon("res/nextkitten.png");
+        ImageIcon kittenimagelocked = new ImageIcon(getClass().getResource("res/nextkitten.png"));
         JButton kittenL = new JButton();
         kittenL.setBounds(15,100, 410, 300);
         kittenL.setIcon(kittenimagelocked);
@@ -318,8 +318,8 @@ public class Game {
                         clevel.setText("Congratulations! You won!");
                         unlock.setText("Click here to start a new game!");
                         ui.setTitle("TapTheCat | Freedom!");
-                        kitten.setIcon(new ImageIcon("res/kittensfinal.png"));
-                        bg.setIcon(new ImageIcon("res/backgroundempty.png"));
+                        kitten.setIcon(new ImageIcon(getClass().getResource("res/kittensfinal.png")));
+                        bg.setIcon(new ImageIcon(getClass().getResource("res/backgroundempty.png")));
                         unlock.addActionListener(_ -> {
                             new Game(1280,720);
                             ui.dispose();
