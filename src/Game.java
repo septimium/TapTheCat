@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
@@ -75,7 +74,7 @@ public class Game {
         Feeder free = new Feeder(new BigDecimal("50000000000000000"), "Free Will", new BigDecimal("1000000000000000"), BigDecimal.valueOf(0));
         //
 
-        //Display the cat
+        //Display the clickable cat
         JPanel p = new JPanel();
         p.setLayout(null);
         p.setPreferredSize(new Dimension(450,300));
@@ -107,61 +106,61 @@ public class Game {
         multipliers.setForeground(Color.white);
         multipliers.setContentAreaFilled(false);
         multipliers.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        multipliers.addActionListener(e -> {
+        multipliers.addActionListener(_ -> {
             JPanel zoomiesshop = new JPanel();
             zoomiesshop.setLayout(new GridLayout(0,1,0,0));
             JButton zoomies1 = buttonZoomies(laser, zoomiesshop);
-            zoomies1.addActionListener(e1 -> {
+            zoomies1.addActionListener(_ -> {
                 if(getKibbles().compareTo(laser.getPrice()) >= 0){
                     eventZoomiesTrue(zoomies1, laser, multiplier, score);
                 }
                 else{
-                    eventZoomiesFalse(zoomiesshop, 50);
+                    eventFalse(zoomiesshop, 70, 50, 15);
                 }
             });
             JButton zoomies2 = buttonZoomies(scratcher, zoomiesshop);
-            zoomies2.addActionListener(e2 -> {
+            zoomies2.addActionListener(_ -> {
                 if(getKibbles().compareTo(scratcher.getPrice()) >= 0){
                     eventZoomiesTrue(zoomies2, scratcher, multiplier, score);
                 }
                 else{
-                    eventZoomiesFalse(zoomiesshop, 120);
+                    eventFalse(zoomiesshop, 70, 120, 15);
                 }
             });
             JButton zoomies3 = buttonZoomies(fishing, zoomiesshop);
-            zoomies3.addActionListener(e3 -> {
+            zoomies3.addActionListener(_ -> {
                 if(getKibbles().compareTo(fishing.getPrice()) >= 0){
                     eventZoomiesTrue(zoomies3, fishing, multiplier, score);
                 }
                 else{
-                    eventZoomiesFalse(zoomiesshop, 190);
+                    eventFalse(zoomiesshop, 70, 190, 15);
                 }
             });
             JButton zoomies4 = buttonZoomies(crinkle, zoomiesshop);
-            zoomies4.addActionListener(e4 -> {
+            zoomies4.addActionListener(_ -> {
                 if(getKibbles().compareTo(crinkle.getPrice()) >= 0){
                     eventZoomiesTrue(zoomies4, crinkle, multiplier, score);
                 }
                 else{
-                    eventZoomiesFalse(zoomiesshop, 260);
+                    eventFalse(zoomiesshop, 70, 260,15);
                 }
             });
             JButton zoomies5 = buttonZoomies(mouse, zoomiesshop);
-            zoomies5.addActionListener(e5 -> {
+            zoomies5.addActionListener(_ -> {
                 if(getKibbles().compareTo(mouse.getPrice()) >= 0){
                     eventZoomiesTrue(zoomies5, mouse, multiplier, score);
                 }
                 else{
-                    eventZoomiesFalse(zoomiesshop, 330);
+                    eventFalse(zoomiesshop, 70, 330, 15);
                 }
             });
             JButton zoomies6 = buttonZoomies(catnip, zoomiesshop);
-            zoomies6.addActionListener(e6 -> {
+            zoomies6.addActionListener(_ -> {
                 if(getKibbles().compareTo(catnip.getPrice()) >= 0){
                     eventZoomiesTrue(zoomies6, catnip, multiplier, score);
                 }
                 else{
-                    eventZoomiesFalse(zoomiesshop, 400);
+                    eventFalse(zoomiesshop, 70,400, 15);
                 }
             });
             JButton zoomies7 = new JButton("<- Go Back");
@@ -172,7 +171,7 @@ public class Game {
             zoomies7.setForeground(Color.white);
             zoomies7.setContentAreaFilled(false);
             zoomies7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            zoomies7.addActionListener(d -> {
+            zoomies7.addActionListener(_ -> {
                 zoomiesshop.setVisible(false);
                 shops.setVisible(true);
             });
@@ -189,61 +188,61 @@ public class Game {
         feeders.setContentAreaFilled(false);
         feeders.setFont(getFont().deriveFont(Font.PLAIN, 40));
         feeders.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        feeders.addActionListener(e -> {
+        feeders.addActionListener(_ -> {
             JPanel feedersshop = new JPanel();
             feedersshop.setLayout(new GridLayout(0,1,0,0));
             JButton feeder1 = buttonFeeder(human, feedersshop);
-            feeder1.addActionListener(e1 -> {
+            feeder1.addActionListener(_ -> {
                 if(getKibbles().compareTo(human.getPrice()) >= 0){
                     eventFeederTrue(feeder1, human, multiplier, score);
                 }
                 else{
-                    eventFeederFalse(feedersshop, 50);
+                    eventFalse(feedersshop, 70,50,15);
                 }
             });
             JButton feeder2 = buttonFeeder(owner, feedersshop);
-            feeder2.addActionListener(e2 -> {
+            feeder2.addActionListener(_ -> {
                 if(getKibbles().compareTo(owner.getPrice()) >= 0){
                     eventFeederTrue(feeder2, owner, multiplier, score);
                 }
                 else{
-                    eventFeederFalse(feedersshop, 120);
+                    eventFalse(feedersshop, 70, 120, 15);
                 }
             });
             JButton feeder3 = buttonFeeder(bowl, feedersshop);
-            feeder3.addActionListener(e3 -> {
+            feeder3.addActionListener(_ -> {
                 if(getKibbles().compareTo(bowl.getPrice()) >= 0){
                     eventFeederTrue(feeder3, bowl, multiplier, score);
                 }
                 else{
-                    eventFeederFalse(feedersshop, 190);
+                    eventFalse(feedersshop, 70, 190, 15);
                 }
             });
             JButton feeder4 = buttonFeeder(timed, feedersshop);
-            feeder4.addActionListener(e4 -> {
+            feeder4.addActionListener(_ -> {
                 if(getKibbles().compareTo(timed.getPrice()) >= 0){
                     eventFeederTrue(feeder4, timed, multiplier, score);
                 }
                 else{
-                    eventFeederFalse(feedersshop, 260);
+                    eventFalse(feedersshop, 70, 260, 15);
                 }
             });
             JButton feeder5 = buttonFeeder(smart, feedersshop);
-            feeder5.addActionListener(e5 -> {
+            feeder5.addActionListener(_ -> {
                 if(getKibbles().compareTo(smart.getPrice()) >= 0){
                     eventFeederTrue(feeder5, smart, multiplier, score);
                 }
                 else{
-                    eventFeederFalse(feedersshop, 330);
+                    eventFalse(feedersshop, 70, 330, 15);
                 }
             });
             JButton feeder6 = buttonFeeder(free, feedersshop);
-            feeder6.addActionListener(e6 -> {
+            feeder6.addActionListener(_ -> {
                 if(getKibbles().compareTo(free.getPrice()) >= 0){
                     eventFeederTrue(feeder6, free, multiplier, score);
                 }
                 else{
-                    eventFeederFalse(feedersshop, 400);
+                    eventFalse(feedersshop, 70, 400, 15);
                 }
             });
             JButton feeder7 = new JButton("<- Go Back");
@@ -254,7 +253,7 @@ public class Game {
             feeder7.setForeground(Color.white);
             feeder7.setContentAreaFilled(false);
             feeder7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            feeder7.addActionListener(d -> {
+            feeder7.addActionListener(_ -> {
                 feedersshop.setVisible(false);
                 shops.setVisible(true);
             });
@@ -279,10 +278,7 @@ public class Game {
         JLabel clevel = new JLabel(currentcat.getLevelname(),  SwingConstants.CENTER);
         clevel.setForeground(Color.white);
         clevel.setFont(getFont().deriveFont(Font.PLAIN, 20));
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 0;
-        p2.add(clevel, c);
+        c.fill = GridBagConstraints.HORIZONTAL; c.gridx = 0; c.gridy = 0; p2.add(clevel, c);
         ImageIcon kittenimagelocked = new ImageIcon("res/nextkitten.png");
         JButton kittenL = new JButton();
         kittenL.setBounds(15,100, 410, 300);
@@ -291,55 +287,30 @@ public class Game {
         kittenL.setBorderPainted(false);
         kittenL.setContentAreaFilled(false);
         kittenL.setBackground(Color.BLACK);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 1;
-        p2.add(kittenL, c);
+        c.fill = GridBagConstraints.HORIZONTAL; c.gridx = 0; c.gridy = 1; p2.add(kittenL, c);
         JButton unlock = new JButton("Unlock next cat: "+getFMT().format(currentcat.getNextlevel()));
         unlock.setFont(getFont().deriveFont(Font.PLAIN, 20));
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 2;
+        c.fill = GridBagConstraints.HORIZONTAL; c.gridx = 0; c.gridy = 2;
         unlock.setFocusPainted(false);
         unlock.setBorderPainted(false);
         unlock.setBackground(new Color(0,0,0,0));
         unlock.setForeground(Color.white);
         unlock.setContentAreaFilled(false);
         unlock.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        unlock.addActionListener(e ->{
+        unlock.addActionListener(_ ->{
             if(getKibbles().compareTo(currentcat.getNextlevel()) > 0){
                 switch(currentlevel) {
                     case 1:
-                        setCurrentlevel(2);
-                        setCurrentcat(cat2);
-                        ui.setTitle("TapTheCat | "+currentcat.getLevelname());
-                        clevel.setText(currentcat.getLevelname());
-                        unlock.setText("Unlock next cat: "+getFMT().format(currentcat.getNextlevel()));
-                        kitten.setIcon(currentcat.getKitten());
+                        unlockConfig(2, cat2, ui, clevel, unlock, kitten);
                         break;
                     case 2:
-                        setCurrentlevel(3);
-                        setCurrentcat(cat3);
-                        ui.setTitle("TapTheCat | "+currentcat.getLevelname());
-                        clevel.setText(currentcat.getLevelname());
-                        unlock.setText("Unlock next cat: "+getFMT().format(currentcat.getNextlevel()));
-                        kitten.setIcon(currentcat.getKitten());
+                        unlockConfig(3, cat3, ui, clevel, unlock, kitten);
                         break;
                     case 3:
-                        setCurrentlevel(4);
-                        setCurrentcat(cat4);
-                        ui.setTitle("TapTheCat | "+currentcat.getLevelname());
-                        clevel.setText(currentcat.getLevelname());
-                        unlock.setText("Unlock next cat: "+getFMT().format(currentcat.getNextlevel()));
-                        kitten.setIcon(currentcat.getKitten());
+                        unlockConfig(4, cat4, ui, clevel, unlock, kitten);
                         break;
                     case 4:
-                        setCurrentlevel(5);
-                        setCurrentcat(cat5);
-                        ui.setTitle("TapTheCat | "+currentcat.getLevelname());
-                        clevel.setText(currentcat.getLevelname());
-                        unlock.setText("Buy Freedom: "+getFMT().format(currentcat.getNextlevel()));
-                        kitten.setIcon(currentcat.getKitten());
+                        unlockConfig(5, cat5, ui, clevel, unlock, kitten);
                         break;
                     case 5:
                         setCurrentlevel(6);
@@ -349,7 +320,7 @@ public class Game {
                         ui.setTitle("TapTheCat | Freedom!");
                         kitten.setIcon(new ImageIcon("res/kittensfinal.png"));
                         bg.setIcon(new ImageIcon("res/backgroundempty.png"));
-                        unlock.addActionListener(e7 -> {
+                        unlock.addActionListener(_ -> {
                             new Game(1280,720);
                             ui.dispose();
                         });
@@ -357,14 +328,7 @@ public class Game {
                 }
             }
             else{
-                JPopupMenu pop = new JPopupMenu();
-                JLabel l = new JLabel("INSUFFICIENT KIBBLES");
-                l.setFont(getFont().deriveFont(Font.PLAIN, 20));
-                l.setForeground(Color.white);
-                pop.setBorderPainted(false);
-                pop.setBackground(new Color(0,0,0,0));
-                pop.add(l);
-                pop.show(p2, 85,370);
+                eventFalse(p2, 85, 370, 20);
             }
         });
         p2.add(unlock, c);
@@ -372,15 +336,15 @@ public class Game {
         ui.add(p2, BorderLayout.EAST);
 
         //Zoomies function
-        kitten.addActionListener(e -> {
+        kitten.addActionListener(_ -> {
             setKibbles(getKibbles().add(getZoomies()));
             score.setText("Kibbles: " + getFMT().format(getKibbles()));
         });
         //
 
         //Feeder function
-        int delay = 1000; //milliseconds
-        ActionListener taskPerformer = evt -> {
+        int delay = 1000;
+        ActionListener taskPerformer = _ -> {
             setKibbles(getKibbles().add(getFeeder()));
             score.setText("Kibbles: " + getFMT().format(getKibbles()));
         };
@@ -396,6 +360,18 @@ public class Game {
 
     }
 
+    //Unlock mechanism function
+    public void unlockConfig(int level, Cat cat, JFrame ui, JLabel clevel, JButton unlock, JButton kitten){
+        setCurrentlevel(level);
+        setCurrentcat(cat);
+        ui.setTitle("TapTheCat | "+currentcat.getLevelname());
+        clevel.setText(currentcat.getLevelname());
+        unlock.setText("Buy Freedom: "+getFMT().format(currentcat.getNextlevel()));
+        kitten.setIcon(currentcat.getKitten());
+    }
+    //
+
+    //Button creation function for Zoomies
     public JButton buttonZoomies(Zoomies zoom, JPanel zoomieshop){
         JButton z = new JButton(getFMT2().format(zoom.getPrice())+" - "+zoom.getName()+" (x"+getFMT2().format(zoom.getMultiplier())+") : " +getFMT2().format(zoom.getAmount()));
         z.setFont(getFont().deriveFont(Font.PLAIN, 15));
@@ -408,7 +384,9 @@ public class Game {
         zoomieshop.add(z);
         return z;
     }
+    //
 
+    //ActionEvent function for Zoomies
     public void eventZoomiesTrue(JButton z, Zoomies zoom, JLabel multiplier, JLabel score){
         setKibbles(getKibbles().subtract(zoom.getPrice()));
         zoom.setAmount(zoom.getAmount().add(BigDecimal.valueOf(1)));
@@ -418,19 +396,9 @@ public class Game {
         score.setText("Kibbles: " + getFMT().format(getKibbles()));
         z.setText(getFMT2().format(zoom.getPrice())+" - "+zoom.getName()+" (x"+getFMT2().format(zoom.getMultiplier())+") : " +getFMT2().format(zoom.getAmount()));
     }
+    //
 
-    public void eventZoomiesFalse(JPanel zoomiesshop, int y){
-        JPopupMenu pop = new JPopupMenu();
-        JLabel l = new JLabel("INSUFFICIENT KIBBLES");
-        l.setFont(getFont().deriveFont(Font.PLAIN, 15));
-        l.setForeground(Color.white);
-        pop.setBorderPainted(false);
-        pop.setBackground(new Color(0,0,0,0));
-        pop.setOpaque(false);
-        pop.add(l);
-        pop.show(zoomiesshop, 70,y);
-    }
-
+    //Button creation function for Feeder
     public JButton buttonFeeder(Feeder feed, JPanel feedershop){
         JButton f = new JButton(getFMT2().format(feed.getPrice())+" - "+feed.getName()+" ("+getFMT2().format(feed.getMultiplier())+"/s) : " +getFMT2().format(feed.getAmount()));
         f.setFont(getFont().deriveFont(Font.PLAIN, 15));
@@ -443,7 +411,9 @@ public class Game {
         feedershop.add(f);
         return f;
     }
+    //
 
+    //ActionEvent function for Feeder
     public void eventFeederTrue(JButton f, Feeder feed, JLabel multiplier, JLabel score){
         setKibbles(getKibbles().subtract(feed.getPrice()));
         feed.setAmount(feed.getAmount().add(BigDecimal.valueOf(1)));
@@ -453,19 +423,23 @@ public class Game {
         score.setText("Kibbles: " + getFMT().format(getKibbles()));
         f.setText(getFMT2().format(feed.getPrice())+" - "+feed.getName()+" ("+getFMT2().format(feed.getMultiplier())+"/s) : " +getFMT2().format(feed.getAmount()));
     }
+    //
 
-    public void eventFeederFalse(JPanel feedershop, int y){
+    //ActionEvent for false cases
+    public void eventFalse(JPanel panel, int x, int y, int fontsize){
         JPopupMenu pop = new JPopupMenu();
         JLabel l = new JLabel("INSUFFICIENT KIBBLES");
-        l.setFont(getFont().deriveFont(Font.PLAIN, 15));
+        l.setFont(getFont().deriveFont(Font.PLAIN, fontsize));
         l.setForeground(Color.white);
         pop.setBorderPainted(false);
         pop.setBackground(new Color(0,0,0,0));
         pop.setOpaque(false);
         pop.add(l);
-        pop.show(feedershop, 70,y);
+        pop.show(panel, x,y);
     }
+    //
 
+    //Number formatting function
     public CompactNumberFormat getFMT(){
         String[] compactPatterns = {"", "", "", "0K", "00K", "000K", "0M", "00M", "000M", "0B", "00B", "000B", "0T", "00T", "000T", "0Q", "00Q", "000Q","0X",};
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getNumberInstance();
@@ -473,7 +447,9 @@ public class Game {
         fmt.setMinimumFractionDigits(1);
         return fmt;
     }
+    //
 
+    //Another number formatting function
     public CompactNumberFormat getFMT2(){
         String[] compactPatterns = {"", "", "", "0K", "00K", "000K", "0M", "00M", "000M", "0B", "00B", "000B", "0T", "00T", "000T", "0Q", "00Q", "000Q","0X",};
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getNumberInstance();
@@ -481,7 +457,9 @@ public class Game {
         fmt2.setMinimumFractionDigits(0);
         return fmt2;
     }
+    //
 
+    //Font function
     public Font getFont(){
         Font font = null;
         try {
@@ -493,7 +471,9 @@ public class Game {
         }
         return font;
     }
+    //
 
+    //Getters and setters
     public BigDecimal getKibbles() {
         return kibbles;
     }
@@ -525,4 +505,5 @@ public class Game {
     public void setCurrentcat(Cat currentcat) {
         this.currentcat = currentcat;
     }
+    //
 }

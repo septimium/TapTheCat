@@ -6,17 +6,6 @@ import java.io.InputStream;
 
 public class HowToPlay {
     HowToPlay(){
-        //Custom Font
-        Font font = null;
-        try {
-            InputStream is = getClass().getResourceAsStream("/FFFForward.TTF");
-            font = Font.createFont(Font.TRUETYPE_FONT, is);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is));
-        } catch (IOException | FontFormatException e) {
-        }
-        //
-
         //Content
         JFrame res = new JFrame();
         res.setTitle("TapTheCat | How To Play");
@@ -28,26 +17,41 @@ public class HowToPlay {
         res.setVisible(true);
         res.setLayout(new BorderLayout());
         JLabel text = new JLabel("How To Play", SwingConstants.CENTER);
-        text.setFont(font.deriveFont(Font.PLAIN, 40));
+        text.setFont(getFont().deriveFont(Font.PLAIN, 40));
         text.setForeground(Color.white);
         res.add(text, BorderLayout.NORTH);
         text.setBorder(new EmptyBorder(10,0,0,0));
         res.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //
 
+        //TO DO
+        //
+
         //Go Back Button
         JButton back = new JButton("<- Go Back");
-        back.setFont(font.deriveFont(Font.PLAIN, 20));
+        back.setFont(getFont().deriveFont(Font.PLAIN, 20));
         back.setFocusPainted(false);
         back.setBorderPainted(false);
         back.setBackground(new Color(0,0,0,0));
         back.setForeground(Color.white);
         back.setContentAreaFilled(false);
         back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        back.addActionListener(d -> {
-            res.dispose();
-        });
+        back.addActionListener(_ -> res.dispose());
         res.add(back, BorderLayout.SOUTH);
         //
     }
+
+    //Font function
+    public Font getFont(){
+        Font font = null;
+        try {
+            InputStream is = getClass().getResourceAsStream("/FFFForward.TTF");
+            font = Font.createFont(Font.TRUETYPE_FONT, is);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, is));
+        } catch (IOException | FontFormatException e) {
+        }
+        return font;
+    }
+    //
 }
